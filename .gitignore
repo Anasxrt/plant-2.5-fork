@@ -56,6 +56,15 @@ temp/
 *.log
 
 # ===========================
+# Build/Deploy Scripts (not needed in production)
+# ===========================
+deploy.sh
+package.json
+package-lock.json
+webpack.config.js
+postcss.config.js
+
+# ===========================
 # Seed Webs (forked - not needed)
 # ===========================
 vendor/seedwebs/
