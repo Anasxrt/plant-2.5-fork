@@ -59,3 +59,13 @@ temp/
 # Seed Webs (forked - not needed)
 # ===========================
 vendor/seedwebs/
+
+# ===========================
+# Build Output (CSS - generated from SCSS, should be built for production)
+# ===========================
+css/*.css
+css/*.css.map
+css/scss/*.css
+css/scss/*.css.map
+css/scss/*.min.css
+css/scss/*.css.map
