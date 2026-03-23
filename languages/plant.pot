@@ -625,7 +625,7 @@ msgid "List"
 msgstr ""
 
 #: inc/kirki.php:2672
-msgid "Load Font Awesome 5?"
+msgid "Load Font Awesome 7?"
 msgstr ""
 
 #: inc/kirki.php:153 inc/kirki.php:729

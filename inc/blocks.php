@@ -5,13 +5,13 @@
 add_action('admin_enqueue_scripts', 'seed_add_gutenberg_assets');
 function seed_add_gutenberg_assets() {
     if ('post.php' == $GLOBALS['pagenow']) {
-        wp_enqueue_style('s-gutenberg', get_theme_file_uri('/css/wp-gutenberg.css'), false);
+        wp_enqueue_style('s-gutenberg', get_theme_file_uri('/css/wp-gutenberg.min.css'), false);
         if ( class_exists( 'WooCommerce' ) && 'shop_order' != $GLOBALS['typenow']) {
-            wp_enqueue_style('s-woo', get_theme_file_uri('/css/woo.css'), false);
-            wp_enqueue_style('s-woo-th', get_theme_file_uri('/css/woo-th.css'), false);
+            wp_enqueue_style('s-woo', get_theme_file_uri('/css/woo.min.css'), false);
+            wp_enqueue_style('s-woo-th', get_theme_file_uri('/css/woo-th.min.css'), false);
         }
         wp_enqueue_script('s-keenslider', get_theme_file_uri('/js/keen-slider.js'), array(), '5.2.0', true);
-        wp_enqueue_script('s-blocks', get_theme_file_uri('/js/wp-blocks.js'), array(), '1.0.0', true);
+        wp_enqueue_script('s-blocks', get_theme_file_uri('/js/wp-blocks.min.js'), array(), '1.0.0', true);
     }
 }
 

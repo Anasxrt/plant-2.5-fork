@@ -2678,7 +2678,7 @@ Kirki::add_field( 'plant', [
 
 Kirki::add_field( 'plant', [
 	'settings'    => 'fontawesome',
-	'label'       => __( 'Load Font Awesome 5?', 'plant' ),
+	'label'       => __( 'Load Font Awesome 7?', 'plant' ),
 	'description'    => __( 'Save and refresh to see.', 'plant' ),
 	'section'     => 'general',
 	'type'        => 'toggle',
