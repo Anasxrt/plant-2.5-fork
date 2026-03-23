@@ -1,11 +1,14 @@
 <?php
 
 /**
- * seed functions and definitions.
+ * Plant Theme functions and definitions.
+ *
+ * Forked from: Seed Webs (https://seedwebs.com)
+ * Modified by: Montri Udomariyah
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package seed
+ * @package plant
  */
 
 if (class_exists('Kirki')) {
@@ -535,27 +538,27 @@ function plant_register_required_plugins()
         array(
             'name'               => 'Kirki',
             'slug'               => 'kirki',
-            'source'             => get_template_directory() . '/vendor/kirki/kirki.5.0.0.zip',
+            'source'             => get_template_directory() . '/vendor/kirki/kirki.5.2.2.zip',
             'required'           => true,
-            'version'            => '5.0.0',
+            'version'            => '5.2.2',
             'force_activation'   => true,
             'force_deactivation' => false,
         ),
         array(
             'name'               => 'Smart Slider 3 Pro',
             'slug'               => 'nextend-smart-slider3-pro',
-            'source'             => get_template_directory() . '/vendor/nextend/smartslider3-wordpress-PRO-3.5.1.19.zip',
+            'source'             => get_template_directory() . '/vendor/nextend/smartslider3-wordpress-PRO-3.5.1.34.zip',
             'required'           => false,
-            'version'            => '3.5.1.19',
+            'version'            => '3.5.1.34',
             'force_activation'   => false,
             'force_deactivation' => false,
         ),
         array(
             'name'               => 'One Click Demo Import',
             'slug'               => 'one-click-demo-import',
-            'source'             => get_template_directory() . '/vendor/ocdi/one-click-demo-import.3.1.2.zip',
+            'source'             => get_template_directory() . '/vendor/ocdi/one-click-demo-import.3.4.0.zip',
             'required'           => false,
-            'version'            => '3.1.2',
+            'version'            => '3.4.0',
             'force_activation'   => false,
             'force_deactivation' => false,
         ),

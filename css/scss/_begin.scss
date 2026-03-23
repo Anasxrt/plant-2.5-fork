@@ -1,4 +1,18 @@
-/* == MOBILE REBOOT == */
+// =============================================================================
+// CSS RESET & BASE STYLES
+// =============================================================================
+// Based on Normalize.css with Bootstrap-like additions.
+//
+// Table of Contents:
+//   1. Box Sizing
+//   2. HTML5 Elements
+//   3. Typography
+//   4. Forms
+//   5. Media
+//   6. Utilities
+// =============================================================================
+
+/* == 1. BOX SIZING == */
 *,
 *::before,
 *::after {
@@ -7,6 +21,7 @@
 @-ms-viewport {
   width: device-width;
 }
+/* == 2. HTML5 ELEMENTS == */
 article,
 aside,
 figcaption,
@@ -207,6 +222,8 @@ legend {
   color: inherit;
   white-space: normal;
 }
+
+/* == 3. TYPOGRAPHY == */
 progress {
   vertical-align: baseline;
 }
@@ -239,6 +256,7 @@ template {
 [hidden] {
   display: none !important;
 }
+/* == 4. BASE ELEMENTS == */
 html {
   scroll-behavior: smooth;
   font-family: sans-serif;
@@ -250,6 +268,7 @@ html {
   height: -webkit-fill-available;
   background-color: #fff;
 }
+
 body {
   margin: 0;
   font-family: var(--s-body);
@@ -345,7 +364,7 @@ a {
   }
 }
 
-/* == INI == */
+/* == 5. FORM ELEMENTS == */
 ol {
   padding-left: 1.6em;
   text-indent: 0;
@@ -495,6 +514,7 @@ textarea {
   font-size: 16px;
 }
 
+/* == 6. BUTTONS == */
 textarea.input-text {
   border: 1px solid var(--s-border);
   &:focus {

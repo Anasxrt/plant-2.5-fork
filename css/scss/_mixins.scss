@@ -1,0 +1,206 @@
+// =============================================================================
+// THEME MIXINS
+// =============================================================================
+// Reusable SCSS mixins for consistent styling patterns.
+// =============================================================================
+
+// =============================================================================
+// TRANSITIONS
+// =============================================================================
+
+// Standard transition mixin
+@mixin transition($properties: all, $duration: 0.3s, $timing: ease) {
+  transition: $properties $duration $timing;
+}
+
+// Smooth animation transition
+@mixin transition-smooth {
+  transition: all 0.3s ease-in-out;
+}
+
+// =============================================================================
+// FLEXBOX
+// =============================================================================
+
+// Center content vertically and horizontally
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Flex between (space between)
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Flex column
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+// =============================================================================
+// RESPONSIVE
+// =============================================================================
+
+// Mobile breakpoint
+@mixin mobile {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+// Tablet breakpoint
+@mixin tablet {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+// Desktop breakpoint
+@mixin desktop {
+  @media (min-width: 992px) {
+    @content;
+  }
+}
+
+// Large desktop breakpoint
+@mixin desktop-lg {
+  @media (min-width: 1120px) {
+    @content;
+  }
+}
+
+// =============================================================================
+// BUTTONS
+// =============================================================================
+
+// Primary button style
+@mixin button-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 6px 20px;
+  font-family: var(--s-heading);
+  font-weight: var(--s-heading-weight);
+  color: var(--s-bg);
+  background-color: var(--s-accent);
+  border: none;
+  border-radius: var(--s-border-radius);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  max-width: 100%;
+  width: max-content;
+
+  &:hover {
+    background-color: var(--s-accent-hover);
+    color: var(--s-bg);
+  }
+
+  > svg {
+    margin-right: 8px;
+  }
+}
+
+// Ghost button style
+@mixin button-ghost {
+  @include button-primary;
+  background-color: var(--s-bg);
+  border: 2px solid var(--s-accent);
+  color: var(--s-accent);
+
+  &:hover {
+    background-color: var(--s-accent);
+    color: var(--s-bg);
+  }
+}
+
+// =============================================================================
+// CARDS
+// =============================================================================
+
+// Card shadow and radius
+@mixin card {
+  box-shadow: var(--s-shadow);
+  border-radius: var(--s-border-radius);
+  overflow: hidden;
+}
+
+// =============================================================================
+// VISIBILITY
+// =============================================================================
+
+// Hide on mobile
+@mixin hide-mobile {
+  @media (max-width: 991px) {
+    display: none !important;
+  }
+}
+
+// Hide on desktop
+@mixin hide-desktop {
+  @media (min-width: 992px) {
+    display: none !important;
+  }
+}
+
+// Screen reader only
+@mixin sr-only {
+  clip: rect(1px, 1px, 1px, 1px);
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+}
+
+// =============================================================================
+// FORMS
+// =============================================================================
+
+// Form input base styles
+@mixin form-input {
+  box-shadow: 0 0 0 transparent;
+  border: 1px solid var(--s-border);
+  border-radius: var(--s-border-radius);
+  background-color: #fff;
+  color: var(--s-text);
+  transition: border-color 0.2s ease-in-out;
+
+  &:focus {
+    border-color: var(--s-accent);
+  }
+}
+
+// =============================================================================
+// TYPOGRAPHY
+// =============================================================================
+
+// Heading font
+@mixin heading-font {
+  font-family: var(--s-heading);
+  font-weight: var(--s-heading-weight);
+  line-height: var(--s-heading-line-height);
+}
+
+// Body font
+@mixin body-font {
+  font-family: var(--s-body);
+  line-height: var(--s-body-line-height);
+}
+
+// =============================================================================
+// CONTAINER
+// =============================================================================
+
+// Container with responsive padding
+@mixin container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: var(--s-space);
+  padding-left: var(--s-space);
+  max-width: var(--s-space);
+}

@@ -3,7 +3,7 @@
       seed_icon('s-' . get_theme_mod('buttons_icon', 'chat'));
       $buttons_icon_message = get_theme_mod('buttons_icon_message', 'Message us');
       if ($buttons_icon_message) {
-        echo '<div class="c-desc">' . $buttons_icon_message . '</div>';
+        echo '<div class="c-desc">' . esc_html($buttons_icon_message) . '</div>';
       }
       echo '<span>';
       seed_icon('x');
@@ -21,8 +21,8 @@
 
       if($chat_plugin) {
         echo '<li class="c-tip -chat-plugin">';
-        echo '<div class="fb-customerchat" attribution=setup_tool page_id="' . trim(get_theme_mod( 'buttons_messenger_id' , '')) . '" minimized="true"></div>';
-        echo '<div class="c-desc">' . get_theme_mod('buttons_' . $channel . '_tooltip', ucfirst($channel)) .'</div>';
+        echo '<div class="fb-customerchat" attribution=setup_tool page_id="' . esc_attr(trim(get_theme_mod( 'buttons_messenger_id' , ''))) . '" minimized="true"></div>';
+        echo '<div class="c-desc">' . esc_html(get_theme_mod('buttons_' . $channel . '_tooltip', ucfirst($channel))) .'</div>';
         ?>
         <div id="fb-root"></div>
         <script>
@@ -67,9 +67,9 @@ function s_chat_output($channel) {
     $link_prefix = 'tel:';
     $tooltip = ': ' . get_theme_mod('buttons_' . $channel . '_url', '');
   }
-  echo '<li class="c-tip -' . $channel . '"><a href="' . $link_prefix . get_theme_mod('buttons_' . $channel . '_url', '#') . '" target="_blank">';
+  echo '<li class="c-tip -' . esc_attr($channel) . '"><a href="' . esc_url($link_prefix . get_theme_mod('buttons_' . $channel . '_url', '#')) . '" target="_blank" rel="noopener">';
   seed_icon('s-chat-' . $channel);
-  echo '<div class="c-desc">' . get_theme_mod('buttons_' . $channel . '_tooltip', ucfirst($channel)) . $tooltip .'</div>';
+  echo '<div class="c-desc">' . esc_html(get_theme_mod('buttons_' . $channel . '_tooltip', ucfirst($channel)) . $tooltip) .'</div>';
   echo '</a></li>';
 }
 ?>

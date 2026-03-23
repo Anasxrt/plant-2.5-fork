@@ -1,4 +1,4 @@
-@import "variables";
+@use "variables" as *;
 :root {
   --sp-accent: #ef6354;
   --sp-muted: #666;
@@ -28,7 +28,7 @@ body.page-template-salepage {
     border-radius: var(--s-border-radius);
     overflow: hidden;
     box-shadow: var(--s-shadow);
-    padding: 0 #{($sp_container_width - $sp_content_width) / 2};
+    padding: 0 calc((#{$sp_container_width} - #{$sp_content_width}) / 2);
   }
   .entry-content > h2 {
     font-size: 1.5em;
@@ -48,7 +48,7 @@ body.page-template-salepage {
     margin: 0 calc(var(--s-space) * -2) var(--s-space);
   }
   @media (min-width: $sp_container_width) {
-    margin: 0 #{($sp_container_width - $sp_content_width) / -2} var(--s-space);
+    margin: 0 calc((#{$sp_container_width} - #{$sp_content_width}) / -2) var(--s-space);
   }
   @media (min-width: 768px) {
     .mobile {
@@ -80,8 +80,8 @@ body .alignwide {
     margin-right: calc(var(--s-space) * -1);
   }
   @media (min-width: $sp_container_width) {
-    margin-left: ($sp_container_width - $sp_content_width) / -2;
-    margin-right: ($sp_container_width - $sp_content_width) / -2;
+    margin-left: calc((#{$sp_container_width} - #{$sp_content_width}) / -2);
+    margin-right: calc((#{$sp_container_width} - #{$sp_content_width}) / -2);
   }
 }
 #sp-buy {

@@ -11,8 +11,9 @@
 ?>
 
 <?php 
+	$shop_page_id = wc_get_page_id('shop');
 	if (is_shop()) {
-		seed_banner_title(woocommerce_get_page_id('shop'));
+		seed_banner_title($shop_page_id);
 		$css_class .= ' hide-title';
 	} else {
 		echo '<div class="s-container">';

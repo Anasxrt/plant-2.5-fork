@@ -38,7 +38,7 @@
                         rel="author"><?php the_author(); ?></a>
                 </h2>
                 <?php if(get_the_author_meta( 'description' )) {
-                    echo '<div class="desc">'. get_the_author_meta( 'description' ). '</div>';
+                    echo '<div class="desc">'. wp_kses_post( get_the_author_meta( 'description' ) ). '</div>';
                 }
                 ?>
             </div>

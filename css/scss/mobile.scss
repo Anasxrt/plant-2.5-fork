@@ -1,10 +1,27 @@
-@import 'variables';
-@import 'begin';
-@import 'seed';
-@import 'fonts';
-@import 'etc';
+@use 'variables' as *;
+@use 'mixins' as *;
+@use 'begin';
+@use 'seed';
+@use 'fonts';
+@use 'etc';
 
-/* == GENERAL == */
+// =============================================================================
+// MOBILE STYLES
+// =============================================================================
+// This file contains mobile-first styles and overrides.
+// Organized by section for maintainability.
+//
+// Table of Contents:
+//   1. General
+//   2. Header
+//   3. Body / Content
+//   4. Forms
+//   5. Single Post
+//   6. Widgets
+//   7. Footer
+// =============================================================================
+
+/* == 1. GENERAL == */
 .site {
   position: relative;
   min-height: 100vh;
@@ -17,7 +34,7 @@
   }
 }
 
-/* == HEADER == */
+/* == 2. HEADER == */
 
 .site-header {
   z-index: 900;
@@ -443,7 +460,7 @@
   }
 }
 
-/* == BODY == */
+/* == 3. BODY / CONTENT == */
 .main-body {
   body:not(.home) & {
     padding-bottom: var(--s-space);
@@ -724,7 +741,6 @@
     }
   }
 }
-$cal_red: #d9534f;
 .content-date {
   display: flex;
   align-items: center;
@@ -733,7 +749,7 @@ $cal_red: #d9534f;
     min-width: 60px;
     width: 60px;
     height: 60px;
-    border: 2px solid $cal_red;
+    border: 2px solid $cal-red;
     border-radius: 5px;
     position: relative;
     background-color: #fff;
@@ -744,11 +760,11 @@ $cal_red: #d9534f;
     font-size: 24px;
     line-height: 38px;
     height: 38px;
-    color: $cal_red;
+    color: $cal-red;
   }
   .month {
     height: 18px;
-    background-color: $cal_red;
+    background-color: $cal-red;
     font-size: 11px;
     color: #fff;
     text-align: center;
@@ -905,7 +921,7 @@ body.category .content-item .cat-links {
   }
 }
 
-/* FORM */
+/* == 4. FORMS == */
 body.page-template-page-form .site-content {
   background-color: #f8f9fa;
   @media (min-width: 768px) {
@@ -939,7 +955,7 @@ body.page-template-page-form .site-content {
   }
 }
 
-/* SINGLE */
+/* == 5. SINGLE POST == */
 .single-area {
   .main-header {
     text-align: center;
@@ -962,7 +978,7 @@ body.page-template-page-form .site-content {
   }
 }
 
-/* AUTHOR PROFILE */
+/* == AUTHOR PROFILE == */
 .entry-author {
   margin: var(--s-space) auto;
   text-align: center;
@@ -996,7 +1012,7 @@ body.page-template-page-form .site-content {
   }
 }
 
-/* WIDGET AREA */
+/* == 6. WIDGETS == */
 .widget-area {
   .current-menu-item > a {
     font-weight: bold;
@@ -1039,7 +1055,7 @@ body.page-template-page-form .site-content {
   font-size: 1.375em;
 }
 
-/* ERROR 404 */
+/* == ERROR 404 == */
 .error-404 {
   text-align: center;
   .search-form {
@@ -1047,7 +1063,7 @@ body.page-template-page-form .site-content {
   }
 }
 
-/* == FOOTER == */
+/* == 7. FOOTER == */
 
 .site-footer-space {
   height: var(--s-footer-height);

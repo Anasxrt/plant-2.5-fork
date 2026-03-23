@@ -1,4 +1,23 @@
-/* == GENERAL == */
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// =============================================================================
+// DESKTOP STYLES
+// =============================================================================
+// This file contains desktop-specific overrides and styles.
+// It builds upon the base styles in mobile.scss.
+//
+// Table of Contents:
+//   1. Typography
+//   2. Header
+//   3. Body / Content
+//   4. Forms
+//   5. Single / Comments
+//   6. Footer
+//   7. Consent Banner
+// =============================================================================
+
+/* == 1. TYPOGRAPHY == */
 h1,
 h2,
 h3,
@@ -26,7 +45,7 @@ h6 {
   font-size: 0.875em;
 }
 
-/* == HEADER == */
+/* == 2. HEADER == */
 body.headbar-d {
   .site-branding,
   .site-member {
@@ -262,9 +281,9 @@ body.headbar-d {
   }
 }
 
-/* == BODY == */
+/* == 3. BODY / CONTENT == */
 
-/* CONTENT ITEM */
+/* == CONTENT ITEM == */
 .content-item {
   &.-hero {
     border-radius: var(--s-border-radius);
@@ -316,7 +335,7 @@ body.headbar-d {
   }
 }
 
-/* FORM - Page Template */
+/* == 4. FORMS == */
 body.page-template-page-form .site-content {
   @media (min-width: 992px) {
     padding-top: 35px;
@@ -333,7 +352,7 @@ body.page-template-page-form .site-content {
   }
 }
 
-/* SINGLE - AUTHOR PROFILE */
+/* == 5. SINGLE / COMMENTS == */
 .entry-author {
   margin-top: 40px;
   text-align: left;
@@ -345,7 +364,7 @@ body.page-template-page-form .site-content {
     min-width: 100px;
   }
 }
-/* COMMENTS */
+/* == COMMENTS == */
 .comments-area {
   margin-bottom: 30px;
 }
@@ -364,7 +383,7 @@ body.page-template-page-form .site-content {
   width: 32%;
 }
 
-/* FOOTER */
+/* == 6. FOOTER == */
 .site-login {
   max-height: 400px;
 }
@@ -379,7 +398,7 @@ body.page-template-page-form .site-content {
   padding: 0 calc(var(--s-space) * 0.5);
 }
 
-/* == CONSENT == */
+/* == 7. CONSENT BANNER == */
 body.-left-consent{
   .glowCookies__banner{
     left: 15px;

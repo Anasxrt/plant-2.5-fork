@@ -1,4 +1,19 @@
-/* == GUTENBERG EDITOR == */
+// =============================================================================
+// PLUGINS & EXTENSIONS
+// =============================================================================
+// Styles for third-party plugins and WordPress extensions.
+//
+// Table of Contents:
+//   1. Gutenberg / Block Editor
+//   2. WordPress Core
+//   3. Jetpack
+//   4. Comments
+//   5. Search
+//   6. GenerateBlocks
+//   7. Chat / Social
+// =============================================================================
+
+/* == 1. GUTENBERG / BLOCK EDITOR == */
 body .alignfull,
 body .alignwide {
   margin-left: calc(var(--s-space) * -1);
@@ -10,6 +25,7 @@ body .alignwide {
   max-width: 750px;
 }
 
+/* == 2. WORDPRESS CORE == */
 .wp-block-cover-text p {
   padding: 1.5em 0;
 }
@@ -59,6 +75,7 @@ body .alignwide {
 }
 .wp-block-group {
   margin-bottom: var(--s-space);
+
   &.has-background {
     margin-left: calc(var(--s-space) * -1);
     margin-right: calc(var(--s-space) * -1);
@@ -170,6 +187,8 @@ img.alignleft {
 .hentry li ol {
   margin: 0.5em 0;
 }
+
+/* == WORDPRESS CORE - MISC == */
 .byline,
 .updated:not(.published) {
   display: none;
@@ -284,12 +303,12 @@ body.home .gallery,
   padding: 0;
 }
 
-/* Jetpack */
+/* == 3. JETPACK == */
 .infinite-scroll .content-pagination {
   display: none;
 }
 
-/* Comments */
+/* == 4. COMMENTS == */
 .comments-area {
   clear: both;
   margin-bottom: 15px;
@@ -364,7 +383,7 @@ body.home .gallery,
   }
 }
 
-/* fitVids - https://codepen.io/chriscoyier/pen/YzXeXjK */
+/* == 5. MEDIA / fitVids == */
 .fitVids-wrapper {
   position: relative;
   padding-bottom: 56.25%;
@@ -378,12 +397,12 @@ body.home .gallery,
   }
 }
 
-/* Facebook Comments */
+/* == FACEBOOK COMMENTS == */
 .fb_iframe_widget_lift {
   width: 100% !important;
 }
 
-/* Search Form */
+/* == 6. SEARCH FORM == */
 #searchform {
   width: 100%;
   max-width: 240px;
@@ -420,7 +439,7 @@ body.home .gallery,
   }
 }
 
-/* GenerateBlocks */
+/* == 7. GENERATEBLOCKS == */
 .gb-button-wrapper {
   a.gb-button {
     &.text-left {
@@ -432,7 +451,7 @@ body.home .gallery,
   }
 }
 
-/* S-CHAT */
+/* == 8. CHAT / SOCIAL == */
 body {
   --s-chat-bottom: 24px;
   &.woocommerce,

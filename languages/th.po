@@ -457,7 +457,7 @@ msgid "Frontend CSS"
 msgstr ""
 
 #. Description of the theme
-msgid "General Purpose Theme"
+msgid "The fork of General Purpose Theme, the code provided as is, no support. However, feel free to leave your comment on https://github.com/Anas.xrt/plant-2.5-fork"
 msgstr ""
 
 #: inc/kirki.php:2609

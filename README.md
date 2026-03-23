@@ -1,8 +1,114 @@
-# Plant
+# Plant Theme (Maintained Fork)
 
-General Purpose WordPress Theme by SeedWebs.com.
+## About This Fork
+
+This is a **maintained fork** of the Plant 2.5 WordPress theme, originally developed by [Seed Webs](https://seedwebs.com). This fork was created specifically for website owners who want to keep their existing Plant 2.5 design without migrating to Plant 3.
+
+### Why This Fork?
+
+Many website owners have invested significant time and effort into customizing their Plant 2.5 theme. With the release of Plant 3, these users faced a difficult choice:
+
+- **Migrate to Plant 3** and undergo a full site redesign
+- **Stay on Plant 2.5** and miss out on security updates and PHP compatibility
+
+This fork solves that problem by providing:
+
+- **PHP 8.3+ Compatibility** - Modern PHP support for current server environments
+- **Security Updates** - XSS protection and other security hardening
+- **Stability Fixes** - Bug fixes and performance improvements
+- **Gutenberg Editor Support** - Preserves the familiar Gutenberg editing experience
+
+### What This Fork Provides
+
+✅ **Security Updates** - Critical security patches to protect your site
+✅ **PHP 8.3+ Support** - Compatible with modern PHP versions
+✅ **Bug Fixes** - Stability improvements and error corrections
+✅ **Performance Optimization** - Caching and efficiency improvements
+
+### What This Fork Does NOT Provide
+
+❌ **New Features** - This fork focuses on maintenance, not new functionality
+❌ **Major Design Changes** - Preserves the original Plant 2.5 design
+
+### For New Features
+
+If you want access to new features and functionality, please consider:
+
+- **Upgrading to Plant 3** when ready for a full redesign
+- **Waiting for future feature releases** of this fork
+
+### Attribution
+
+This theme is based on the original [Plant theme by Seed Webs](https://seedwebs.com/package/plant/). We thank the Seed Webs team for creating such a versatile and popular theme.
+
+---
+
+## Vendor Dependencies & Updates
+
+This theme bundles several third-party libraries. Here's what you need to know about updating them:
+
+### Bundled Vendors
+
+| Vendor | Current Version | Purpose | Update Method |
+|--------|-----------------|---------|---------------|
+| ACF (Advanced Custom Fields) | 6.2.0 | Custom fields and field groups | Manual replacement |
+| Kirki Customizer Framework | 5.2.2 | Theme customizer | Manual replacement |
+| Smart Slider 3 Pro | 3.5.1.19 | Slider functionality | Manual replacement |
+| One Click Demo Import | 3.4.0 | Demo content import | Manual replacement |
+| TGM Plugin Activation | Latest | Required plugins management | Manual replacement |
+
+### How to Update Vendors
+
+1. **Download the latest version** from the vendor's official website
+2. **Backup your site** before making changes
+3. **Replace the vendor folder** in `vendor/` directory
+4. **Test thoroughly** to ensure compatibility
+
+### Important Notes
+
+- **ACF:** The bundled version is 6.2.0 (released August 2023). ACF has released newer versions with additional features and security fixes. Update at your own risk - newer versions may require PHP 7.4+ which is compatible with our PHP 8.3 requirement.
+
+- **Kirki:** Version 5.2.2 is bundled. Check for newer versions at https://kirki.org/
+
+- **Smart Slider 3 Pro:** Requires a valid license for updates. Contact Seed Webs for license renewals.
+
+- **One Click Demo Import:** Optional plugin. Can be removed if not needed.
+
+### External Plugin Recommendations
+
+While this theme bundles these vendors, for better maintenance we recommend:
+
+- Install ACF from WordPress.org repository for automatic updates
+- Install Kirki from WordPress.org repository  
+- Use the externally hosted versions instead of bundled ones when possible
+
+---
+
+## Original Theme Information
+
+**Original Theme:** Plant by SeedWebs.com  
+**Original Version:** 2.5.9  
+**License:** GNU General Public License v2 or later
+
+---
 
 ## Change Log
+
+### 2.5.9.1
+
+- Date: 23 MAR 2026
+- **New: PHP 8.3+ Compatibility** - Updated to support PHP 8.3 and above
+- **New: Security Enhancements** - Added XSS protection using wp_kses_post(), esc_html(), esc_attr(), and esc_url()
+- **New: Tabnabbing Protection** - Added rel="noopener" to external links
+- **Fix: WooCommerce Deprecated Function** - Replaced woocommerce_get_page_id() with wc_get_page_id()
+- **Performance: Cached WooCommerce page ID** - Reduced redundant function calls
+- **Update: Theme Version** - Updated to 2.5.9.1
+- **Update: Author Attribution** - Added Montri Udomariyah as fork maintainer
+- **Update: WordPress Compatibility** - Tested up to WordPress 6.9.4, requires 6.0+
+
+---
+
+## Original Change Log (Seed Webs)
 
 ### 2.5.9
 

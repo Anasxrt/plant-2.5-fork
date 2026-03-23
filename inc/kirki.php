@@ -2016,7 +2016,7 @@ Kirki::add_field( 'plant', [
 	'settings' => 'footer_text',
 	'label'    => __( 'Text or HTML', 'plant' ),
 	'section'  => 'footer',
-	'default'  => esc_attr__( '©' .  date("Y") . ' ' . $_SERVER['HTTP_HOST'] . '. All rights reserved.', 'plant' ),
+	'default'  => esc_attr__( '©' .  date('Y') . ' ' . (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '') . '. All rights reserved.', 'plant' ),
 	'priority' => 10,
 	'choices'     => [
 		'language' => 'html',

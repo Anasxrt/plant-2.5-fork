@@ -1,4 +1,22 @@
-/* == BOOTSTRAP & ETC== */
+// =============================================================================
+// UTILITY CLASSES & COMPONENTS
+// =============================================================================
+// Bootstrap-like utilities and custom components.
+//
+// Table of Contents:
+//   1. Text Utilities
+//   2. Display Utilities
+//   3. Table Styles
+//   4. Container & Buttons
+//   5. Grid System
+//   6. Slider
+//   7. Modal
+// =============================================================================
+
+// Load seed_helper at the beginning (required for @use)
+@use 'seed_helper';
+
+/* == 1. TEXT UTILITIES == */
 .text-center {
   text-align: center;
   @media (min-width: 992px) {
@@ -16,6 +34,7 @@
 .text-right {
   text-align: right;
 }
+/* == 2. DISPLAY UTILITIES == */
 .hide,
 #page .hide {
   display: none;
@@ -23,6 +42,7 @@
 .fade.in {
   opacity: 1;
 }
+/* == 3. TABLE STYLES == */
 .table,
 .wp-block-table table {
   thead th {
@@ -41,7 +61,7 @@
   }
 }
 
-/* == SEED ==*/
+/* == 4. CONTAINER & BUTTONS == */
 .s-container {
   margin-right: auto;
   margin-left: auto;
@@ -104,11 +124,13 @@ a.s-button {
   text-align: center;
   margin-bottom: var(--s-space);
 }
+/* == 5. GRID SYSTEM == */
 .s-grid {
   display: grid;
   grid-gap: var(--s-space);
   margin-bottom: var(--s-space);
   grid-template-columns: minmax(0, 1fr);
+
   &.-m2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -122,6 +144,7 @@ a.s-button {
   .s-grid {
     margin-bottom: 0;
   }
+
   @media (min-width: 992px) {
     grid-gap: var(--s-space);
     margin-bottom: var(--s-space);
@@ -143,7 +166,7 @@ a.s-button {
   }
 }
 
-/* Keen Slider */
+/* == 6. SLIDER == */
 .slider-area {
   display: flex;
   overflow: hidden;
@@ -320,6 +343,7 @@ a.s-button {
   }
 }
 
+/* == 7. MODAL == */
 .s-modal {
   height: 0;
   max-height: 0;
@@ -440,4 +464,3 @@ a.s-button {
     }
   }
 }
-@import 'seed_helper';
