@@ -519,11 +519,7 @@ if (! defined('PLANT_DISABLE_ACF')) {
  */
 require get_template_directory() . '/inc/blocks.php';
 
-function seed_theme_updater()
-{
-    require(get_template_directory() . '/vendor/seedwebs/updater/theme-updater.php');
-}
-add_action('after_setup_theme', 'seed_theme_updater');
+
 
 /**
  * TGMPA
