@@ -1,2 +1,0 @@
-body.scroll-fx-auto .entry-content>*,body.scroll-fx-auto .gb-grid-column,body.scroll-fx-auto :not(.slider)>.content-item{opacity:0;transform:translateY(90px);transition:1s}body.scroll-fx-auto .entry-content>.-sh,body.scroll-fx-auto .gb-grid-column.-sh,body.scroll-fx-auto :not(.slider)>.content-item.-sh{opacity:1;transform:translateY(0)}body.scroll-fx-class .s-fx{opacity:0;transform:translateY(90px);transition:1s}body.scroll-fx-class .s-fx.-sh{opacity:1;transform:translateY(0)}
-/*# sourceMappingURL=scroll-fx.min.css.map*/

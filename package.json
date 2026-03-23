@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack --mode development --watch",
-    "build": "webpack --mode production",
+    "build": "webpack --mode production && find css -name '*.min.js' -type f -empty -delete",
     "build:dev": "webpack --mode development"
   },
   "keywords": [
