@@ -1,5 +1,7 @@
 # Plant Theme (Maintained Fork)
 
+![Project Screenshot](./screenshot.png)
+
 ## Production Status ✅
 
 **This version is production-ready and has passed code review (March 2026).**
