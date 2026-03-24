@@ -329,10 +329,14 @@ function seed_scripts()
     wp_enqueue_script('s-scripts', get_theme_file_uri('/js/scripts.min.js'), array(), $s_theme_version, true);
 
     if ($GLOBALS['s_keen_slider'] == 'enable') {
-        wp_enqueue_script('s-slider', get_theme_file_uri('/js/keen-slider.js'), array(), $s_theme_version, true);
+        wp_enqueue_script('s-slider', get_theme_file_uri('/js/keen-slider.js'), array('s-scripts'), '6.8.6', true);
     }
 
-    wp_enqueue_script('s-vanilla', get_theme_file_uri('/js/main-vanilla.min.js'), array(), $s_theme_version, true);
+    $vanilla_deps = array('s-scripts');
+    if ($GLOBALS['s_keen_slider'] == 'enable') {
+        $vanilla_deps[] = 's-slider';
+    }
+    wp_enqueue_script('s-vanilla', get_theme_file_uri('/js/main-vanilla.min.js'), $vanilla_deps, $s_theme_version, true);
 
     if (($GLOBALS['s_jquery'] == 'enable') || $GLOBALS['s_is_woo']) {
         wp_enqueue_script('s-jquery', get_theme_file_uri('/js/main-jquery.min.js'), array('jquery'), $s_theme_version, true);

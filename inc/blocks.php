@@ -10,8 +10,8 @@ function seed_add_gutenberg_assets() {
             wp_enqueue_style('s-woo', get_theme_file_uri('/css/woo.min.css'), false);
             wp_enqueue_style('s-woo-th', get_theme_file_uri('/css/woo-th.min.css'), false);
         }
-        wp_enqueue_script('s-keenslider', get_theme_file_uri('/js/keen-slider.js'), array(), '5.2.0', true);
-        wp_enqueue_script('s-blocks', get_theme_file_uri('/js/wp-blocks.min.js'), array(), '1.0.0', true);
+        wp_enqueue_script('s-keenslider', get_theme_file_uri('/js/keen-slider.js'), array('s-scripts'), '6.8.6', true);
+        wp_enqueue_script('s-blocks', get_theme_file_uri('/js/wp-blocks.min.js'), array('s-scripts', 's-keenslider'), '1.0.0', true);
     }
 }
 

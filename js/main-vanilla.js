@@ -122,7 +122,8 @@ function createSlider(slider_id, view_m, view_d, center_m, center_d) {
     },
   });
   function updateClasses(instance) {
-    var slide = instance.details().relativeSlide;
+    if (!instance.track || !instance.track.details || instance.track.details.relativeSlide === undefined || instance.track.details.relativeSlide === null) return;
+    var slide = instance.track.details.relativeSlide;
     var dots = slider_wrapper.querySelectorAll('.dot');
     dots.forEach(function (dot, idx) {
       idx === slide ? dot.classList.add('active') : dot.classList.remove('active');
