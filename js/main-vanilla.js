@@ -1,3 +1,28 @@
+// Helper: domReady polyfill
+function domReady(fn) {
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    setTimeout(fn, 1);
+  } else {
+    document.addEventListener('DOMContentLoaded', fn);
+  }
+}
+
+// Helper: addClass function
+function addClass(selector, className) {
+  var elements = document.querySelectorAll(selector);
+  elements.forEach(function(el) {
+    el.classList.add(className);
+  });
+}
+
+// Helper: removeClass function
+function removeClass(selector, className) {
+  var elements = document.querySelectorAll(selector);
+  elements.forEach(function(el) {
+    el.classList.remove(className);
+  });
+}
+
 // Using event delegation https://gomakethings.com/why-event-delegation-is-a-better-way-to-listen-for-events-in-vanilla-js/#web-performance
 document.addEventListener(
   'click',
