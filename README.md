@@ -123,6 +123,9 @@ While this theme bundles these vendors, for better maintenance we recommend:
 - **Fix: Missing JS Helpers** - Added missing functions (addClass, removeClass, domReady, getClosest)
 - **Fix: Script Dependencies** - Fixed proper load order for scripts
 - **Fix: Conditional Dependencies** - Fixed s-vanilla script dependency when KeenSlider is disabled
+- **Fix: Expose** - domReady, addClass, removeClass globally in main-vanilla.js
+- **Fix: Correct --s-footer-height** - from 300px to 40px (matching original design)
+- **Build: Regenerated** - all minified CSS and JS files
 - **Update: KeenSlider Version** - From 5.2.0 to 6.8.6
 
 ### 2.5.9.1
