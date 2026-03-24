@@ -23,6 +23,13 @@ function removeClass(selector, className) {
   });
 }
 
+// Expose helper functions globally for compatibility
+if (typeof window !== 'undefined') {
+  window.domReady = domReady;
+  window.addClass = addClass;
+  window.removeClass = removeClass;
+}
+
 // Using event delegation https://gomakethings.com/why-event-delegation-is-a-better-way-to-listen-for-events-in-vanilla-js/#web-performance
 document.addEventListener(
   'click',
