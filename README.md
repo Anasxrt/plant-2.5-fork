@@ -1,6 +1,9 @@
-# Plant Theme (Maintained Fork)
+# Plant Theme (Maintained Fork) ![Thailand Flag](https://flagcdn.com/32x24/th.png) [ภาษาไทย](https://github.com/Anasxrt/plant-2.5-fork/blob/master/README-TH.md)
 
 ![Project Screenshot](./screenshot.png)
+
+
+
 
 ## Production Status ✅
 
@@ -110,6 +113,17 @@ While this theme bundles these vendors, for better maintenance we recommend:
 ---
 
 ## Change Log
+
+### 2.5.9.1-1
+
+- Date: 24 MAR 2026
+- **Fix: KeenSlider v6.8.6 API Change** - Updated from v5.2.0 to v6.8.6
+- **Fix: Slider JS Error** - Changed `instance.details()` to `instance.track.details` API
+- **Fix: Null Safety** - Added checks to prevent slider initialization errors
+- **Fix: Missing JS Helpers** - Added missing functions (addClass, removeClass, domReady, getClosest)
+- **Fix: Script Dependencies** - Fixed proper load order for scripts
+- **Fix: Conditional Dependencies** - Fixed s-vanilla script dependency when KeenSlider is disabled
+- **Update: KeenSlider Version** - From 5.2.0 to 6.8.6
 
 ### 2.5.9.1
 

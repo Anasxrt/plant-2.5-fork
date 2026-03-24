@@ -108,6 +108,17 @@ Fork นี้จึงแก้ปัญหาด้วยการมอบส
 
 ## Change Log
 
+### 2.5.9.1-1
+
+- วันที่: 24 มีนาคม 2026
+- **แก้ไข: KeenSlider v6.8.6 API** - อัปเดตจาก v5.2.0 เป็น v6.8.6
+- **แก้ไข: Slider JS Error** - เปลี่ยนจาก `instance.details()` เป็น `instance.track.details`
+- **แก้ไข: Null Safety** - เพิ่มการตรวจสอบเพื่อป้องกันข้อผิดพลาดตอนเริ่มต้นสไลด์
+- **แก้ไข: Missing JS Helpers** - เพิ่มฟังก์ชันที่ขาดหายไป (addClass, removeClass, domReady, getClosest)
+- **แก้ไข: Script Dependencies** - แก้ไขลำดับการโหลดสคริปต์
+- **แก้ไข: Conditional Dependencies** - แก้ไขการพึ่งพา s-scripts อย่างถูกต้อง
+- **อัปเดต: KeenSlider Version** - จาก 5.2.0 เป็น 6.8.6
+
 ### 2.5.9.1
 
 - วันที่: 23 มีนาคม 2026  
