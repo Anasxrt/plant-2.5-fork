@@ -117,6 +117,9 @@ Fork นี้จึงแก้ปัญหาด้วยการมอบส
 - **แก้ไข: Missing JS Helpers** - เพิ่มฟังก์ชันที่ขาดหายไป (addClass, removeClass, domReady, getClosest)
 - **แก้ไข: Script Dependencies** - แก้ไขลำดับการโหลดสคริปต์
 - **แก้ไข: Conditional Dependencies** - แก้ไขการพึ่งพา s-scripts อย่างถูกต้อง
+- **แก้ไข: เปิดใช้งาน** - domReady, addClass, removeClass แบบ global ในไฟล์ main-vanilla.js
+- **แก้ไข: ปรับค่า --s-footer-height** - จาก 300px เป็น 40px (ให้ตรงกับดีไซน์ต้นฉบับ)
+- **สร้างใหม่: ทำการ regenerate** - ไฟล์ CSS และ JS ที่ถูก minify ทั้งหม
 - **อัปเดต: KeenSlider Version** - จาก 5.2.0 เป็น 6.8.6
 
 ### 2.5.9.1
