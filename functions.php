@@ -181,82 +181,60 @@ function seed_content_width()
 add_action('after_setup_theme', 'seed_content_width', 0);
 
 /**
+ * Register main sidebars.
+ */
+function seed_register_main_sidebars() {
+    seed_register_sidebar('Right Sidebar', 'rightbar');
+    seed_register_sidebar('Left Sidebar', 'leftbar');
+    seed_register_sidebar('Shop Sidebar', 'shopbar');
+}
+
+/**
+ * Register header sidebars.
+ */
+function seed_register_header_sidebars() {
+    seed_register_sidebar('Home Banner', 'home_banner', '<h1 class="widget-title">', '</h1>');
+    seed_register_sidebar('Header Search', 'search', '<!--', '-->');
+    seed_register_sidebar('Header Action', 'action', '<!--', '-->');
+    seed_register_sidebar('Mobile Nav', 'mobile_nav', '<!--', '-->');
+}
+
+/**
+ * Register footer sidebars.
+ */
+function seed_register_footer_sidebars() {
+    seed_register_sidebar('Footer Blocks', 'footer_blocks', '<!--', '-->');
+}
+
+/**
+ * Register a single sidebar.
+ *
+ * @param string $name Sidebar name
+ * @param string $id Sidebar ID
+ * @param string $before_title Default widget title HTML
+ * @param string $after_title Default widget title close HTML
+ */
+function seed_register_sidebar($name, $id, $before_title = '<h1 class="widget-title">', $after_title = '</h1>') {
+    register_sidebar(array(
+        'name'          => esc_html__($name, 'plant'),
+        'id'            => $id,
+        'description'   => '',
+        'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</aside>',
+        'before_title'  => $before_title,
+        'after_title'   => $after_title,
+    ));
+}
+
+/**
  * Register widget area.
  */
 function seed_widgets_init()
 {
-    register_sidebar(array(
-        'name'          => esc_html__('Right Sidebar', 'plant'),
-        'id'            => 'rightbar',
-        'description'   => '',
-        'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-        'after_widget'  => '</aside>',
-        'before_title'  => '<h1 class="widget-title">',
-        'after_title'   => '</h1>',
-    ));
-    register_sidebar(array(
-        'name'          => esc_html__('Left Sidebar', 'plant'),
-        'id'            => 'leftbar',
-        'description'   => '',
-        'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-        'after_widget'  => '</aside>',
-        'before_title'  => '<h1 class="widget-title">',
-        'after_title'   => '</h1>',
-    ));
-    register_sidebar(array(
-        'name'          => esc_html__('Shop Sidebar', 'plant'),
-        'id'            => 'shopbar',
-        'description'   => '',
-        'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-        'after_widget'  => '</aside>',
-        'before_title'  => '<h1 class="widget-title">',
-        'after_title'   => '</h1>',
-    ));
-    register_sidebar(array(
-        'name'          => esc_html__('Home Banner', 'plant'),
-        'id'            => 'home_banner',
-        'description'   => '',
-        'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-        'after_widget'  => '</aside>',
-        'before_title'  => '<h1 class="widget-title">',
-        'after_title'   => '</h1>',
-    ));
-    register_sidebar(array(
-        'name'          => esc_html__('Header Search', 'plant'),
-        'id'            => 'search',
-        'description'   => '',
-        'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-        'after_widget'  => '</aside>',
-        'before_title'  => '<!--',
-        'after_title'   => '-->',
-    ));
-    register_sidebar(array(
-        'name'          => esc_html__('Header Action', 'plant'),
-        'id'            => 'action',
-        'description'   => '',
-        'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-        'after_widget'  => '</aside>',
-        'before_title'  => '<!--',
-        'after_title'   => '-->',
-    ));
-    register_sidebar(array(
-        'name'          => esc_html__('Mobile Nav', 'plant'),
-        'id'            => 'mobile_nav',
-        'description'   => '',
-        'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-        'after_widget'  => '</aside>',
-        'before_title'  => '<!--',
-        'after_title'   => '-->',
-    ));
-    register_sidebar(array(
-        'name'          => esc_html__('Footer Blocks', 'plant'),
-        'id'            => 'footer_blocks',
-        'description'   => '',
-        'before_widget' => '<aside id="%1$s" class="footer_blocks %2$s">',
-        'after_widget'  => '</aside>',
-        'before_title'  => '<!--',
-        'after_title'   => '-->',
-    ));
+    seed_register_main_sidebars();
+    seed_register_header_sidebars();
+    seed_register_footer_sidebars();
+    
     if (get_theme_mod('is_footer_column', true)) {
         seed_register_footer($GLOBALS['s_footer_columns']);
     }
@@ -280,53 +258,62 @@ function seed_register_footer($columns = 4)
 add_action('widgets_init', 'seed_widgets_init');
 
 /**
- * Enqueue scripts and styles.
+ * Enqueue base styles.
  */
-function seed_scripts()
-{
-
-    $s_theme = wp_get_theme();
-    $s_theme_version = $s_theme->get('Version');
-
-    wp_enqueue_style('s-mobile', get_theme_file_uri('/css/mobile.min.css'), array(), $s_theme_version);
-    wp_enqueue_style('s-desktop', get_theme_file_uri('/css/desktop.min.css'), array(), $s_theme_version, '(min-width: 992px)');
-
+function seed_enqueue_base_styles($theme_version) {
+    wp_enqueue_style('s-mobile', get_theme_file_uri('/css/mobile.min.css'), array(), $theme_version);
+    wp_enqueue_style('s-desktop', get_theme_file_uri('/css/desktop.min.css'), array(), $theme_version, '(min-width: 992px)');
+    
     if ($GLOBALS['s_style_css'] == 'enable') {
         wp_enqueue_style('s-style', get_stylesheet_uri());
     }
+}
 
-    if ($GLOBALS['s_is_woo']) {
-        if ($GLOBALS['s_woo_css'] == 'override') {
-            wp_enqueue_style('s-woo', get_theme_file_uri('/css/woo.min.css'));
-        }
-        if (get_locale() == 'th' && 'enable' == $GLOBALS['s_woo_th']) {
-            wp_enqueue_style('s-woo-th', get_theme_file_uri('/css/woo-th.min.css'));
-        }
-        wp_enqueue_script('s-woo', get_theme_file_uri('/js/woo.min.js'), array('jquery'), $s_theme_version, true);
+/**
+ * Enqueue WooCommerce styles and scripts.
+ */
+function seed_enqueue_woo_assets($theme_version) {
+    if (!$GLOBALS['s_is_woo']) {
+        return;
     }
+    
+    if ($GLOBALS['s_woo_css'] == 'override') {
+        wp_enqueue_style('s-woo', get_theme_file_uri('/css/woo.min.css'));
+    }
+    if (get_locale() == 'th' && 'enable' == $GLOBALS['s_woo_th']) {
+        wp_enqueue_style('s-woo-th', get_theme_file_uri('/css/woo-th.min.css'));
+    }
+    wp_enqueue_script('s-woo', get_theme_file_uri('/js/woo.min.js'), array('jquery'), $theme_version, true);
+}
 
+/**
+ * Enqueue conditional styles and scripts.
+ */
+function seed_enqueue_conditional_assets($theme_version) {
     if ($GLOBALS['s_fontawesome'] == 'enable') {
         wp_enqueue_style('s-fa', get_theme_file_uri('/fonts/fontawesome/css/all.min.css'), array(), '7.2.0');
     }
 
-    // SALE PAGE
     if (is_page_template('page-templates/salepage.php')) {
-        wp_enqueue_style('s-salepage', get_theme_file_uri('/css/page-salepage.min.css'), array(), $s_theme_version);
-        wp_enqueue_script('s-salepage', get_theme_file_uri('/js/page-salepage.min.js'), array(), $s_theme_version, true);
+        wp_enqueue_style('s-salepage', get_theme_file_uri('/css/page-salepage.min.css'), array(), $theme_version);
+        wp_enqueue_script('s-salepage', get_theme_file_uri('/js/page-salepage.min.js'), array(), $theme_version, true);
     }
 
-    // SCROLL FX
     if (get_theme_mod('scroll_fx', '0')) {
-        wp_enqueue_style('s-fx', get_theme_file_uri('/css/scroll-fx.min.css'), array(), $s_theme_version);
-        wp_enqueue_script('s-fx', get_theme_file_uri('/js/scroll-fx.min.js'), array(), $s_theme_version, true);
+        wp_enqueue_style('s-fx', get_theme_file_uri('/css/scroll-fx.min.css'), array(), $theme_version);
+        wp_enqueue_script('s-fx', get_theme_file_uri('/js/scroll-fx.min.js'), array(), $theme_version, true);
     }
 
-    // COOKIE CONSENT
     if (get_theme_mod('consent_enable', 0)) {
-        wp_enqueue_script('s-consent', get_theme_file_uri('/js/glow-cookies.min.js'), array(), $s_theme_version, true);
+        wp_enqueue_script('s-consent', get_theme_file_uri('/js/glow-cookies.min.js'), array(), $theme_version, true);
     }
+}
 
-    wp_enqueue_script('s-scripts', get_theme_file_uri('/js/scripts.min.js'), array(), $s_theme_version, true);
+/**
+ * Enqueue scripts with dependencies.
+ */
+function seed_enqueue_scripts($theme_version) {
+    wp_enqueue_script('s-scripts', get_theme_file_uri('/js/scripts.min.js'), array(), $theme_version, true);
 
     if ($GLOBALS['s_keen_slider'] == 'enable') {
         wp_enqueue_script('s-slider', get_theme_file_uri('/js/keen-slider.js'), array('s-scripts'), '6.8.6', true);
@@ -336,11 +323,25 @@ function seed_scripts()
     if ($GLOBALS['s_keen_slider'] == 'enable') {
         $vanilla_deps[] = 's-slider';
     }
-    wp_enqueue_script('s-vanilla', get_theme_file_uri('/js/main-vanilla.min.js'), $vanilla_deps, $s_theme_version, true);
+    wp_enqueue_script('s-vanilla', get_theme_file_uri('/js/main-vanilla.min.js'), $vanilla_deps, $theme_version, true);
 
     if (($GLOBALS['s_jquery'] == 'enable') || $GLOBALS['s_is_woo']) {
-        wp_enqueue_script('s-jquery', get_theme_file_uri('/js/main-jquery.min.js'), array('jquery'), $s_theme_version, true);
+        wp_enqueue_script('s-jquery', get_theme_file_uri('/js/main-jquery.min.js'), array('jquery'), $theme_version, true);
     }
+}
+
+/**
+ * Enqueue scripts and styles.
+ */
+function seed_scripts()
+{
+    $s_theme = wp_get_theme();
+    $s_theme_version = $s_theme->get('Version');
+
+    seed_enqueue_base_styles($s_theme_version);
+    seed_enqueue_woo_assets($s_theme_version);
+    seed_enqueue_conditional_assets($s_theme_version);
+    seed_enqueue_scripts($s_theme_version);
 
     if (is_singular() && comments_open() && get_option('thread_comments')) {
         wp_enqueue_script('comment-reply');

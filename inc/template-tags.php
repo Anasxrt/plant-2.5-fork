@@ -220,133 +220,185 @@ function seed_member_menu()
     <?php
 }
 /*
-* Get Post Thumbnail URL from Post ID
-*/
-function seed_get_thumbnail($post_id)
-{
+ * Get Post Thumbnail URL from Post ID.
+ *
+ * @param int $post_id Post ID to get thumbnail for.
+ * @return string|false URL string or false if no thumbnail.
+ */
+function seed_get_thumbnail(int $post_id) {
     $thumb_id = get_post_thumbnail_id($post_id);
     if ($thumb_id) {
         $thumb_url = wp_get_attachment_image_src($thumb_id, 'full', true);
-        $banner_url = $thumb_url[0];
-    } else {
-        $banner_url = false;
+        return $thumb_url[0];
     }
-    return $banner_url;
+    return false;
 }
 /*
-* Output Main Header with Title
-*/
-function seed_banner_title($post_id)
+ * Output Main Header with Title - Refactored into smaller functions
+ */
+function seed_banner_title(int $post_id): void
 {
-// Title Style
-    $post_title_style = '';
-    $default_title_style = get_theme_mod('body_title_style', $GLOBALS['s_title_style']);
-    $title_style = $default_title_style;
-    $post_title_style = get_field('title_style', $post_id);
-    if (($post_title_style) && ($post_title_style != 'default')) {
-        $title_style = $post_title_style;
-    }
-// Load Banner Var
+    $title_style = seed_get_title_style($post_id);
     $banner_bg = '';
-    if ($title_style == 'banner') {
-        $banner_url = seed_get_thumbnail($post_id);
-        if ($post_title_style == 'banner') {
-            $img_banner = get_field('banner', $post_id);
+    
+    if ($title_style === 'banner') {
+        $banner_bg = seed_build_banner_background($post_id, $title_style);
+    }
+    
+    $permalink = get_the_permalink($post_id);
+    $title = seed_get_banner_title($post_id, $title_style);
+    $breadcrumb = seed_get_breadcrumb();
+    
+    echo seed_render_banner($title_style, $banner_bg, $permalink, $title, $breadcrumb);
+}
+
+/**
+ * Get the title style for banner display.
+ *
+ * @param int $post_id Post ID to check.
+ * @return string Title style ('banner', 'minimal', or 'hidden').
+ */
+function seed_get_title_style($post_id) {
+    $default_title_style = get_theme_mod('body_title_style', $GLOBALS['s_title_style']);
+    $post_title_style = get_field('title_style', $post_id);
+    
+    return ($post_title_style && $post_title_style !== 'default')
+        ? $post_title_style
+        : $default_title_style;
+}
+
+/**
+ * Build the banner background CSS.
+ *
+ * @param int $post_id Post ID to get banner for.
+ * @param string $title_style Title style affecting fallback behavior.
+ * @return string HTML div with background styling.
+ */
+function seed_build_banner_background($post_id, $title_style): string {
+    $banner_url = seed_get_thumbnail($post_id);
+    $img_banner_blur = '';
+    $img_banner_opacity = '';
+    
+    if ($title_style === 'banner' && function_exists('get_field')) {
+        $img_banner = get_field('banner', $post_id);
+        if ($img_banner) {
+            $banner_url = $img_banner;
             $img_banner_blur = get_field('banner_blur', $post_id);
             $img_banner_opacity = get_field('banner_opacity', $post_id);
-            if ($img_banner) {
-                $banner_url = $img_banner;
-            }
-        } else {
-        // $post_title_style == 'default'
-            if (!$banner_url) {
-                $banner_url = get_theme_mod('body_title_banner', '');
-            }
-            $is_shop = false;
-            if (function_exists('is_shop')) {
-                $is_shop = is_shop();
-            }
-            if (get_theme_mod('body_title_single', '0') && (is_single($post_id) || is_archive()) && (!$is_shop)) {
-                $img_banner_blur = get_theme_mod('body_title_single_banner_blur', '20');
-                $img_banner_opacity = get_theme_mod('body_title_single_banner_opacity', '0.7');
-            } else {
-                $img_banner_blur = get_theme_mod('body_title_banner_blur', '20');
-                $img_banner_opacity = get_theme_mod('body_title_banner_opacity', '0.7');
-            }
-        }
-        $style = '';
-        if ($banner_url) {
-            $style = 'background-image: url(' . $banner_url . ');';
-            if ($img_banner_blur != '') {
-                $style .= ' filter: blur(' . $img_banner_blur . 'px);';
-            }
-            $style .= ' opacity: ' . $img_banner_opacity . ';';
-            $style = 'style="' . $style . '"';
-            $banner_bg .= '<div class="bg" ' . $style . '></div>';
-        } else {
-            $banner_bg .= '<div class="bg -blank"></div>';
         }
     }
-    $permalink = get_the_permalink($post_id);
-    $breadcrumb = '' ;
-    if (function_exists('yoast_breadcrumb')) {
-        $breadcrumb = yoast_breadcrumb('<div id="breadcrumbs" class="bc">', '</div>', false);
+    
+    if (!$banner_url && $title_style !== 'banner') {
+        $banner_url = get_theme_mod('body_title_banner', '');
+        $is_shop = function_exists('is_shop') && is_shop();
+        
+        if (get_theme_mod('body_title_single', '0') && (is_single($post_id) || is_archive()) && !$is_shop) {
+            $img_banner_blur = get_theme_mod('body_title_single_banner_blur', '20');
+            $img_banner_opacity = get_theme_mod('body_title_single_banner_opacity', '0.7');
+        } else {
+            $img_banner_blur = get_theme_mod('body_title_banner_blur', '20');
+            $img_banner_opacity = get_theme_mod('body_title_banner_opacity', '0.7');
+        }
     }
-    if (function_exists('rank_math_the_breadcrumbs')) {
-        $breadcrumb = rank_math_get_breadcrumbs();
+    
+    if (!$banner_url) {
+        return '<div class="bg -blank"></div>';
     }
+    
+    $style = 'background-image: url(' . esc_url($banner_url) . ');';
+    if ($img_banner_blur) {
+        $style .= ' filter: blur(' . intval($img_banner_blur) . 'px);';
+    }
+    $style .= ' opacity: ' . floatval($img_banner_opacity) . ';';
+    
+    return '<div class="bg" style="' . $style . '"></div>';
+}
+
+/**
+ * Get the banner title text.
+ *
+ * @param int $post_id Post ID to get title for.
+ * @param string $title_style Title style affecting output.
+ * @return string Banner title HTML.
+ */
+function seed_get_banner_title($post_id, $title_style): string {
     if (is_front_page()) {
-        $title = get_bloginfo('name') . '<small>' . get_bloginfo('description') . '</small>' ;
-        $breadcrumb = '' ;
-    } elseif (is_archive()) {
-        $title = get_the_archive_title($post_id);
-        $breadcrumb = '' ;
-    } elseif (is_404()) {
-        $title = __('Page not found', 'plant');
-    } else {
-        if ($title_style == 'banner' && function_exists('get_field')) {
-            $headline_title = get_field('headline_title', $post_id);
-            $headline_subtitle = get_field('headline_subtitle', $post_id);
-            if ($headline_title) {
-                $title = $headline_title;
-                if ($headline_subtitle) {
-                    $title .= '<small>' . $headline_subtitle . '</small>';
-                }
-            } else {
-                $title = get_the_title($post_id);
+        return get_bloginfo('name') . '<small>' . get_bloginfo('description') . '</small>';
+    }
+    
+    if (is_archive()) {
+        return get_the_archive_title();
+    }
+    
+    if (is_404()) {
+        return __('Page not found', 'plant');
+    }
+    
+    if ($title_style === 'banner' && function_exists('get_field')) {
+        $headline_title = get_field('headline_title', $post_id);
+        $headline_subtitle = get_field('headline_subtitle', $post_id);
+        
+        if ($headline_title) {
+            $title = $headline_title;
+            if ($headline_subtitle) {
+                $title .= '<small>' . $headline_subtitle . '</small>';
             }
-        } else {
-            $title = get_the_title($post_id);
+            return $title;
         }
     }
-    if (function_exists('is_shop')) {
-        if (is_shop()) {
-            $title = get_the_title($post_id);
+    
+    return get_the_title($post_id);
+}
+
+/**
+ * Get breadcrumb HTML.
+ *
+ * @return string Breadcrumb markup or empty string.
+ */
+function seed_get_breadcrumb(): string {
+    if (!is_front_page() && !is_archive() && !is_404()) {
+        if (function_exists('yoast_breadcrumb')) {
+            return yoast_breadcrumb('<div id="breadcrumbs" class="bc">', '</div>', false);
+        }
+        if (function_exists('rank_math_the_breadcrumbs')) {
+            return rank_math_get_breadcrumbs();
         }
     }
-    $breadcrumb = apply_filters('plant_breadcrumb', $breadcrumb);
-    $output = '<div class="main-header -' . $title_style .  '">' . $banner_bg .
-    '<div class="s-container">
-        <div class="main-title _heading">
-            <div class="title"><a href="' . $permalink . '">' . $title .
-                    '</a> </div>' . $breadcrumb . '
-        </div>
-    </div>
-</div>' ;
-    echo $output;
+    return apply_filters('plant_breadcrumb', '');
+}
+
+/**
+ * Render the complete banner HTML.
+ *
+ * @param string $title_style Title style for CSS class.
+ * @param string $banner_bg Background HTML.
+ * @param string $permalink URL for title link.
+ * @param string $title Title text/html.
+ * @param string $breadcrumb Breadcrumb HTML.
+ * @return string Complete banner markup.
+ */
+function seed_render_banner(string $title_style, string $banner_bg, string $permalink, string $title, string $breadcrumb): string {
+    $output = '<div class="main-header -' . esc_attr($title_style) . '">';
+    $output .= $banner_bg;
+    $output .= '<div class="s-container">';
+    $output .= '<div class="main-title _heading">';
+    $output .= '<div class="title"><a href="' . esc_url($permalink) . '">' . $title . '</a></div>';
+    $output .= $breadcrumb;
+    $output .= '</div></div></div>';
+    
+    return $output;
 }
 /*
-* Output Author Avatar & Profile in .content-item
-*/
-function seed_author($author_id)
-{
-    $output = '<a class="author" href="' . esc_url(get_author_posts_url($author_id)) . '">'
-    . get_avatar($author_id, 40)
-    . '<div class="name">'
-        . '<h2>' . get_the_author_meta('display_name', $author_id) . '</h2>'
-        . '<small>' . get_the_date() . '</small>'
-        . '</div>'
-    . '</a>';
+ * Output Author Avatar & Profile in .content-item
+ */
+function seed_author(int $author_id): void {
+    $output = '<a class="author" href="' . esc_url(get_author_posts_url($author_id)) . '">';
+    $output .= get_avatar($author_id, 40);
+    $output .= '<div class="name">';
+    $output .= '<h2>' . esc_html(get_the_author_meta('display_name', $author_id)) . '</h2>';
+    $output .= '<small>' . esc_html(get_the_date()) . '</small>';
+    $output .= '</div>';
+    $output .= '</a>';
     echo $output;
 }
 /*
